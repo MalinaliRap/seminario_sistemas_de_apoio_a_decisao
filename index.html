@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <title>Seminário - sistemas de apoio a decisão</title>
+    <meta name="description" content="Curso de Introdução ao React da Code Prestige">
+    <meta name="author" content="Diego Martins de Pinho">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/black.css" id="theme">
+    <link rel="stylesheet" href="lib/css/zenburn.css"> <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="css/custom.css"> <!-- Custom CSS -->
+    <link rel="icon" href="images/icon.png">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <div class="reveal">
+    <div class="slides">
+      <section data-background="images/fundo.jpg">
+
+        <h2>
+          <b style="color: #fff ;-webkit-text-stroke-width: 2px; /* largura da borda */;-webkit-text-stroke-color: #000; /* cor da borda */;text-shadow: 6px 4px #ff0000;">Mineração de Dados Criminais: Um Estudo de Caso no Observatório Criminal do Tapajós</b>
+        </h2>
+        <b style="color: #fff ;-webkit-text-stroke-width: 2px; /* largura da borda */;-webkit-text-stroke-color: #000; /* cor da borda */;text-shadow: 6px 4px #ff0000;">Gabriel Coplas Becher</b>
+        <br>
+        <b style="color: #fff ;-webkit-text-stroke-width: 2px; /* largura da borda */;-webkit-text-stroke-color: #000; /* cor da borda */;text-shadow: 6px 4px #ff0000;">Gabriel Rodrigues</b>
+      </section>
+      <section>
+        <section>
+          <h1>INTRODUÇÃO</h1>
+        </section>
+        <section>
+          <h2>
+            <b>Mineração de dados <span style="color:red">X</span> Dados sobre crimes</b>
+          </h2>
+          <ul>
+            <li> Identificar relação de um tipo de
+              crime com algum bairro.</li>
+            <li> Determinar a existência de um padrão
+              para a idade, sexo, dia da semana e horário de quem comete
+              determinado tipo de crime.</li>
+          </ul>
+        </section>
+        <section>
+        <h4>"...Por meio da
+            ferramenta Weka propõe traçar um perfil das ocorrências que
+            fazem parte de um mesmo agrupamento, encontrando indícios
+            comuns para os crimes cadastrados e mostrando a importância
+            da utilização da mineração de dados no processo de extração do
+            conhecimento a níveis criminais."</h4>
+        </section>
+      </section>
+      <section>
+        <section>
+          <h1>FUNDAMENTAÇÃO TEÓRICA</h1>
+        </section>
+        <section>
+          <h2> KDD (Knowledge Discovery in
+            Databases)</h2>
+          <p>
+            Um método para extrair
+            conhecimento útil a partir de volume de dados. Esse é um
+            processo global com o objetivo de extrair informações de
+            grandes bancos de dados, utilizando algum procedimento
+            automático (matemático ou computacional).
+          </p>
+        </section>
+        <section data-background="images/KDD.png">
+
+        </section>
+        <section>
+          <p>
+            O processo KDD exige diálogo direto com o conhecimento
+            prévio do pesquisador na tomada de decisão sobre os resultados
+            encontrados pelo método.
+          </p>
+        </section>
+        <section>
+          <h2>Agrupamento (Clusters)</h2>
+          <p>A tarefa de agrupamento implementa algoritmo não
+            supervisionado em que o rótulo da classe de cada amostra de
+            treinamento não é conhecido.</p>
+        </section>
+        <section>
+          <p>
+            No
+            agrupamento os objetos são incorporados de modo que a
+            semelhança seja máxima dentro de cada cluster e mínima entre
+            instâncias de clusters diferentes.
+          </p>
+        </section>
+        <section>
+          A diferença fundamental entre a formação de agrupamentos
+          e a classificação é que no cluster <b style="color:red;">não existem classes</b>
+          predefinidas para classificar os registros em estudo.
+        </section>
+        <section>
+          <h2>Algoritmo de Agrupamento K-means (K-médias).</h2>
+          <p>É um algoritmo de partição que busca de forma direta pela
+            divisão ótima (ou aproximadamente ótima) dos n elementos
+            sem a necessidade de associações hierárquicas.</p>
+        </section>
+        <section>
+          <p>Servem
+            exclusivamente para agrupar os <b style="color: #1b91ff">n</b> registros em <b style="color: #1b91ff">k</b> clusters.</p>
+          <img src="images/kmeans.gif">
+        </section>
+        <section>
+          <h2>Distância Euclidiana</h2>
+          <p>Dentre as medidas de distância, a Euclidiana é a mais
+            conhecida. Para calcular a distância entre dois objetos (i e j)
+            com dimensão p (número de variáveis), ela é definida por:</p>
+          <img src="images/distancia_euclidiana.PNG" width="300px;">
+        </section>
+      </section>
+      <section>
+        <section>
+          <h1>Metodologia</h1>
+        </section>
+        <section>
+          <h2>A escolha da base de dados</h2>
+          <ul>
+              <p>
+                A escolha da base de dados ocorre a partir dos boletins de
+                ocorrência do 3º Batalhão de Polícia Militar do Estado do Pará
+                cadastrados até o momento em um período de 10 meses (julho
+                de 2013 a abril de 2014) com mais de 5.400 ocorrências.
+              </p>
+          </ul>
+        </section>
+        <section>
+          <h2>
+            Pré-processamento e seleção das variáveis mais
+            significativas
+          </h2>
+          <p>
+            A
+            estrutura dessa tabela é baseada em 16 atributos, são eles:
+          </p>
+          <ul>
+            <li>identificador da ocorrência.</li>
+            <li>sexo do denunciante.</li>
+            <li>idade do
+              denunciante.</li>
+            <li>sexo do denunciado.</li>
+            <li>idade do denunciado.</li>
+          </ul>
+        </section>
+        <section>
+          <ul>
+            <li>cidade.</li>
+            <li>bairro.</li>
+            <li>tipo de crime.</li>
+            <li>crime.</li>
+            <li>endereço.</li>
+            <li>data.</li>
+            <li>hora.</li>
+            <li> dia
+              da semana.</li>
+            <li>tipo de chamada.</li>
+            <li>latitude.</li>
+            <li>longitude.</li>
+          </ul>
+        </section>
+        <section>
+          <b>Desses
+            atributos apenas <span style="color:red">10</span> são os escolhidos para a fase de préprocessamento,
+            são eles:</b>
+        </section>
+        <section>
+          <ul>
+            <li>sexo e idade do denunciante e
+              denunciado.</li>
+            <li>bairro.</li>
+            <li>tipo de crime.</li>
+            <li>crime.</li>
+            <li>data.</li>
+            <li>hora e dia da
+              semana.</li>
+          </ul>
+        </section>
+        <section>
+          <p>A partir dessa etapa atributos foram padronizados para valores
+            categóricos conforme o padrão exigido pela ferramenta Weka.
+            Abaixo são apresentadas as padronizações dos atributos após a
+            fase de pré-processamento:</p>
+        </section>
+        <section>
+          <ul>
+            <li><b style="color: #6ca0e8;">Sexo do Denunciante e Denunciado:</b> MAS (Masculino)
+              e FEM (Feminino).</li>
+            <li><b style="color: #6ca0e8;">Idade do Denunciante e Denunciado:</b> Criança (0 a 11
+              anos), Adolescente (12 a 17 anos), Jovens (18 a 24
+              anos), Adultos1 (25 a 34 anos), Adultos2 (35 a 64
+              anos), Idosos (Acima de 65 anos).</li>
+            <li><b style="color: #6ca0e8;">Bairro:</b> Central, Intermediario1 (próximos aos bairros
+              centrais), Intermediário2 (próximos aos bairros
+              Intermediários1) e Periférico (afastados da área
+              central).</li>
+          </ul>
+        </section>
+        <section>
+          <ul>
+            <li><b style="color: #6ca0e8;">Tipo de Crime:</b> CCP (Crime contra a pessoa) Ex:
+              Ameaça, Agressão e etc., CP (Crimes contra o
+              patrimônio) Ex: Roubo, Furto, etc., CCDS (Crime
+              contra a Dignidade Sexual) Ex: Estrupo, Assédio
+              Sexual e etc., TD (Tráfico de Drogas) Ex: Tráfico,
+              Associação ao tráfico e etc.</li>
+            <li><b style="color: #6ca0e8;">Data:</b> Início (01 a 10), Meio (11 a 20) e Fim (21 a 31)
+              do mês.
+            </li>
+            <li><b style="color: #6ca0e8;">Hora:</b> Manhã (06 às 12), Tarde (13 às 18), Noite (19 às
+              00) e Madrugada (01 às 05).</li>
+          </ul>
+        </section>
+        <section>
+          <ul>
+            <li><b style="color: #6ca0e8;">Dia da Semana:</b> Dias úteis (segunda, terça, quarta,
+              quinta e sexta) e finais de semana (sábado e domingo).</li>
+            <li><b style="color: #6ca0e8;">Crimes:</b> Os crimes foram apenas trocados os nomes
+              por siglas para facilitar a identificação. Ex: Ameaça
+              (AME), Furto (FUR), Roubo (ROU) e assim
+              sucessivamente.
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h2>Criação do arquivo .Arff</h2>
+          <p>Após a fase de pré-processamento os dados foram
+            exportados para o formato .CSV (separado por vírgula). Foram
+            criados 4 arquivos, um para cada tipo de crime (contra a
+            pessoa, patrimônio, dignidade sexual e tráfico).</p>
+        </section>
+      </section>
+
+      <section>
+        <section>
+          <h1>SÍNTESE E ANÁLISE DOS RESULTADOS.</h1>
+        </section>
+        <section data-background-color="red">
+          <h4>Para todos os tipos de crimes separados na metodologia o
+            algoritmo de agrupamento utilizado é o <i>Simple kmeans</i>,
+            acompanhado da função de distância Euclidiana, ambos
+            citados no referencial teórico.</h4>
+        </section>
+        <section>
+          <h3>Resultados dos crimes contra a pessoa</h3>
+          <img width="800px;" src="images/fig1.PNG"></img>
+        </section>
+        <section>
+          <p> O resultado do cluster0 agrupou 70%
+            das ocorrências (2.549) e do cluster1 incorporou os outros 30%
+            (1.080).</p>
+        </section>
+        <section>
+          <p>
+            O interessante desse resultado é que em ambos os
+            agrupamentos o sexo e idade dos denunciantes e denunciados
+            permaneceram os mesmo,  podendo assim dizer que os crimes
+            de desordem (DES) são denunciados por pessoas do sexo
+            feminino de idade entre 35 a 64 anos (adultos2) e que os
+            denunciados são homens de 18 a 24 anos (jovens).
+          </p>
+        </section>
+        <section>
+          O crime
+          também é cometido em um bairro periférico ou em um
+          intermediário2 podendo avaliar assim a menor incidência de
+          crime dessa natureza em bairros da área central da cidade.
+        </section>
+        <section>
+          Outro fato também visível é que o período em que acontece
+          geralmente esse tipo de delito é no meio ou no fim do mês, de
+          noite ou à tarde, sendo a maioria das ocorrências registradas em
+          um dia útil da semana.
+        </section>
+        <section>
+          <h3>Resultados dos crimes contra o patrimônio.</h3>
+          <img width="800px;" src="images/fig2.PNG"></img>
+        </section>
+        <section>Na imagem nota-se que o cluster0 agrupou os
+          crimes de ROU (roubo), responsável por 64% das ocorrências e os outros 36% sobre agrupou em crimes de FUR (furto).
+        </section>
+        <section>
+          Ambos os crimes são mais denunciados e cometidos por
+          pessoas do sexo masculino, e a idade de quem denuncia fica
+          entre 35 a 64 anos (adultos2) para o crime de roubo e 18 a 24
+          anos (jovens) para o crime de furto.
+        </section>
+        <section>
+          <h3>Resultado dos crimes contra a dignidade sexual.</h3>
+          <img width="800px;" src="images/fig3.PNG"></img>
+        </section>
+        <section>
+          O cluster0 apresenta 59%
+          (34) das ocorrências cadastradas, enquanto que o cluster1
+          agrupou 41% (24).
+        </section>
+        <section>
+          . Ambos os agrupamentos foram utilizando o
+          crime de ESTU (estupro), onde foram analisados que na
+          maioria das vezes esse crime é realizado em bairros afastados
+          da área central (intermediários1 e periféricos) em dias úteis.
+        </section>
+        <section>
+          A
+          maioria dos denunciantes são pessoas do sexo feminino seja ela
+          jovem (18 a 24 anos) ou crianças (0 a 11 anos).
+        </section>
+
+        <section>
+          Já os
+          denunciados são jovens (18 a 24 anos) ou adultos1 (25 a 34
+          anos), que cometem esse crime no período da tarde ou da noite,
+          no meio ou no final do mês.
+        </section>
+        <section>
+          <h3>Resultados dos crimes de tráfico de drogas.</h3>
+          <img width="800px;" src="images/fig4.PNG"></img>
+        </section>
+        <section>
+          O cluster0 apresenta 69%
+          (83) instâncias de crimes de TD (tráfico de drogas), enquanto
+          que o cluster1 informa 31% (37) instâncias de crime de UET
+          (uso de entorpecente).
+        </section>
+        <section>
+          Ambos os crimes são cometidos por
+          jovens, do sexo masculino, em bairros intermediários2, em dias
+          úteis. Porém, o crime de tráfico de drogas é denunciado por
+          pessoas do sexo feminino de idade entre 35 a 64 anos
+          (adultos2), no final do mês, à noite.
+        </section>
+        <section>
+          Enquanto que o uso de
+          entorpecente ocorre é denunciado por pessoas do sexo
+          masculino, de idade entre 25 a 34 anos, no início do mês, à
+          tarde.
+        </section>
+      </section>
+      <section>
+        <h2>Conclusões</h2>
+        <ul>
+          <li style="color:red">Muitas instâncias porém poucos atributos e atributos com pouca diversidade.</li>
+          <li style="color:red">Poucos Clusters, dividindo as <b>n</b> instâncias em apenas 2 grupos</li>
+          <li style="color:green">O uso de um algoritmo não supervisionado pode ajudar na percepção de padrões sem influências externas ou preconceitos.</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Referências</h2>
+        <p>M. DE MELO, Bruno et al. Mineração de Dados Criminais: Um Estudo de Caso no Observatório Criminal do Tapajós: Criminal Data Mining: A Case Studyin Criminal Observatory Tapajós. 2015. Disponível em: https://ieeexplore.ieee.org/stamp/stamp.jsp?tp=&arnumber=7170397. Acesso em: 10 out. 2018</p>
+      </section>
+
+    </div>
+  </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+
+      // More info https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // More info https://github.com/hakimel/reveal.js#dependencies
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/search/search.js', async: true },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
